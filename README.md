@@ -36,7 +36,27 @@ With the skill:
 
 ## Install
 
-These steps are the same for all three ways of using the skill described below. The commands assume you clone the repo to `~/readable`; if you put it somewhere else, change the paths to match.
+There are two ways to install the skill. Either one works with all three ways of using it, described in the next section.
+
+- **Option 1, the skills CLI**, is the quickest. It installs only the skill.
+- **Option 2, cloning the repo**, also gives you a local copy of `always-on.md`, so in Claude Code the always-on rules can update together with the repo. Choose it if you plan to use mode (a) in Claude Code, or if you want to edit the skill.
+
+### Option 1: the skills CLI
+
+[skills](https://github.com/vercel-labs/skills) is Vercel's command-line tool for installing agent skills, and it powers the [skills.sh](https://skills.sh/alexeymalafeev/readable/readable) catalog. It needs Node.js 22.20 or later.
+
+```bash
+npx skills add AlexeyMalafeev/readable -g -a claude-code -a codex
+```
+
+- `-g` installs the skill for all your projects. Without it, the skill goes into the current project only.
+- `-a` picks the agents. Keep only the ones you use, or leave out `-a` to choose from a list.
+
+The command puts the skill in `~/.agents/skills/readable`, the folder Codex reads, and links `~/.claude/skills/readable` to it for Claude Code.
+
+### Option 2: clone the repo and link the skill
+
+The commands assume you clone the repo to `~/readable`; if you put it somewhere else, change the paths to match.
 
 1. Clone the repo:
 
@@ -74,19 +94,30 @@ There are three ways to use the skill, depending on how much you want it to chan
 
 Use this if you want every agent message in every project written this way. Install the skill, then add the short rules to your global instructions.
 
-Claude Code: add an import line to `~/.claude/CLAUDE.md`. Claude Code loads the imported file at the start of every session, so a `git pull` updates the rules too.
+Claude Code, if you cloned the repo: add an import line to `~/.claude/CLAUDE.md`. Claude Code loads the imported file at the start of every session, so a `git pull` updates the rules too.
 
 ```bash
 printf '\n@~/readable/always-on.md\n' >> ~/.claude/CLAUDE.md
 ```
 
-If you'd rather review changes before they reach your instructions, paste the contents of `always-on.md` into `~/.claude/CLAUDE.md` instead of importing it.
+Claude Code, if you installed with the skills CLI, or you'd rather review changes before they reach your instructions: append a copy of the rules instead.
 
-Codex: Codex can't import files, so append a copy of the rules to `~/.codex/AGENTS.md`.
+```bash
+{ echo; curl -fsSL https://raw.githubusercontent.com/AlexeyMalafeev/readable/main/always-on.md; } >> ~/.claude/CLAUDE.md
+```
+
+Codex: Codex can't import files, so append a copy of the rules to `~/.codex/AGENTS.md`. If you cloned the repo:
 
 ```bash
 mkdir -p ~/.codex
 { echo; cat ~/readable/always-on.md; } >> ~/.codex/AGENTS.md
+```
+
+If you installed with the skills CLI:
+
+```bash
+mkdir -p ~/.codex
+{ echo; curl -fsSL https://raw.githubusercontent.com/AlexeyMalafeev/readable/main/always-on.md; } >> ~/.codex/AGENTS.md
 ```
 
 Codex reads only one global instructions file. If you have a `~/.codex/AGENTS.override.md`, add the rules there instead. If you've set `CODEX_HOME`, use that folder instead of `~/.codex`.
@@ -118,15 +149,17 @@ Claude Code: add this to `~/.claude/settings.json`, merging it with any settings
 
 To do this for a single project instead, run `/skills`, highlight `readable`, press Space until it shows `user-only`, then press Esc to save.
 
-Codex: create an `agents/openai.yaml` file inside the skill folder that turns off automatic loading. `$readable` still works.
+Codex: create an `agents/openai.yaml` file inside the skill folder that turns off automatic loading. `$readable` still works. These commands work with both install options; with option 2, `~/.agents/skills/readable` is a link to the cloned repo.
 
 ```bash
-mkdir -p ~/readable/skills/readable/agents
-cat > ~/readable/skills/readable/agents/openai.yaml <<'EOF'
+mkdir -p ~/.agents/skills/readable/agents
+cat > ~/.agents/skills/readable/agents/openai.yaml <<'EOF'
 policy:
   allow_implicit_invocation: false
 EOF
 ```
+
+If you installed with the skills CLI, an update replaces the whole skill folder and deletes this file, so run these commands again after each update.
 
 Then call the skill when you need it, for example: `/readable write up the results of today's experiment` in Claude Code, or `$readable write up the results of today's experiment` in Codex.
 
@@ -136,21 +169,29 @@ When the skill is active, it applies to everything written for a person to read:
 
 ## Updating
 
+If you installed with the skills CLI:
+
+```bash
+npx skills update -g readable
+```
+
+If you cloned the repo:
+
 ```bash
 git -C ~/readable pull
 ```
 
-The linked skill updates right away. In mode (a), the Claude Code import picks up the new rules in your next session. The Codex copy doesn't update by itself: if `always-on.md` changed, replace the block between the `readable:start` and `readable:end` comments in your `AGENTS.md`.
+Either way, the skill itself updates right away. In mode (a), the Claude Code import picks up the new rules in your next session. Copies of the rules don't update by themselves: if `always-on.md` changed, replace the block between the `readable:start` and `readable:end` comments in your `CLAUDE.md` or `AGENTS.md`.
 
 ## Removing
 
-1. Remove the link: `rm ~/.claude/skills/readable` for Claude Code, or `rm ~/.agents/skills/readable` for Codex. This removes only the link, not the cloned repo.
-2. Mode (a): delete the `@~/readable/always-on.md` line from `~/.claude/CLAUDE.md`, or the block between the `readable:start` and `readable:end` comments from your Codex `AGENTS.md`.
-3. Mode (c): delete the `readable` entry from `skillOverrides` in `~/.claude/settings.json`. The Codex setting goes away with the link; to remove it from the repo too, delete `~/readable/skills/readable/agents/openai.yaml`.
+1. Mode (c): delete the `readable` entry from `skillOverrides` in `~/.claude/settings.json`. For Codex, delete `~/.agents/skills/readable/agents/openai.yaml`.
+2. Mode (a): delete the `@~/readable/always-on.md` line from `~/.claude/CLAUDE.md`, or the block between the `readable:start` and `readable:end` comments from your `CLAUDE.md` or `AGENTS.md`.
+3. Remove the skill. If you installed with the skills CLI, run `npx skills remove --global readable`, which removes it from both agents. If you cloned the repo, run `rm ~/.claude/skills/readable` for Claude Code and `rm ~/.agents/skills/readable` for Codex. That removes only the links; delete `~/readable` too if you no longer need it.
 
 ## Other agents
 
-Any agent that supports the [Agent Skills](https://agentskills.io) format can use the `skills/readable` folder; link it into that agent's skills folder. The short rules in `always-on.md` work in any agent's global instructions file.
+The skills CLI can install the skill for many other agents too: see its [list of supported agents](https://github.com/vercel-labs/skills/blob/main/docs/agents.md) for the names to pass to `-a`. Any agent that supports the [Agent Skills](https://agentskills.io) format can also use the `skills/readable` folder directly; link it into that agent's skills folder. The short rules in `always-on.md` work in any agent's global instructions file.
 
 ## Status
 
