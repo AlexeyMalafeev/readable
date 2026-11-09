@@ -1,5 +1,13 @@
 # Changelog
 
+## [1.1.1] - 2026-11-09
+
+### Changed
+
+- Removed the README paragraph positioning Readable as the author's personal style.
+- Replaced mandatory approval-waiting guidance in the full skill and `always-on.md` with guidance to distinguish observations from interpretations and explain proposed corrections. Authorization remains governed by the user's task and platform instructions.
+- Checked the skill change against 1.1.0 on GPT 6.1 Sol with medium reasoning through Eliza: 16 responses across three project summaries (two repetitions) and two next-action scenarios. Eight blinded comparisons by the same model returned seven ties and one preference for the updated text. No regression was identified in this small pilot; it does not establish equivalence across agents or all tasks.
+
 ## [1.1.0] - 2026-11-09
 
 ### Changed
@@ -28,5 +36,6 @@ First stable release, including the work published before releases were tagged.
 
 - The README's early-version status notice.
 
+[1.1.1]: https://github.com/AlexeyMalafeev/readable/compare/v1.1.0...v1.1.1
 [1.1.0]: https://github.com/AlexeyMalafeev/readable/compare/v1.0.0...v1.1.0
 [1.0.0]: https://github.com/AlexeyMalafeev/readable/releases/tag/v1.0.0

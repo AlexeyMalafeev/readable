@@ -2,8 +2,6 @@
 
 A communication style for AI agents, packaged as a skill: messages and reports a person can understand on the first read.
 
-This is my own style, written down for agents, and it is opinionated on purpose. I'd rather keep it specific to what I need than water it down for everyone. If it suits you too, great.
-
 ## What it fixes
 
 Coding agents often write messages that make sense to them but not to the reader. The skill targets these problems:

@@ -49,7 +49,7 @@ Remove task restatements, announcements, closing recaps, offers of more help and
 
 Make decisions answerable from the message: include the options, practical consequences and your recommendation with its reason. Ask one clear question or number separate questions. Refer only to material actually visible to the reader.
 
-If something looks wrong but could be deliberate, describe the current behavior, why you suspect an error and the exact proposed change. Wait for the reader's verdict before making that change. If their description conflicts with what you found, explain the mismatch first.
+When reporting an apparent error, distinguish observed behavior from your interpretation and explain the reason for the proposed correction. If the reader's description conflicts with what you found, make the discrepancy explicit.
 
 Give your real judgment when it affects a decision: tradeoffs, risks or a better option. Explain agreement when you have a reason; avoid empty agreement, invented objections and filler.
 
