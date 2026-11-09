@@ -1,5 +1,13 @@
 # Changelog
 
+## [1.1.0] - 2026-11-09
+
+### Changed
+
+- Shortened `skills/readable/SKILL.md` from 2,898 to 1,108 tokens with the o200k_base tokenizer (about 62% less instruction context).
+- Consolidated repeated guidance and the pre-send checklist while retaining concrete nouns, explicit purposes and reasons, meaningful limitations, and examples.
+- Published the exact compact text tested against 1.0.0 on GPT 6.1 Sol with medium reasoning through Eliza. Three shared fact sheets, two repetitions and two skill versions produced 12 summaries. Six blinded comparisons by the same model returned five ties and one preference for the full version, which explained technical terms more fully. This is a small, single-model pilot, not evidence of equivalent performance across agents.
+
 ## [1.0.0] - 2026-11-09
 
 First stable release, including the work published before releases were tagged.
@@ -20,4 +28,5 @@ First stable release, including the work published before releases were tagged.
 
 - The README's early-version status notice.
 
+[1.1.0]: https://github.com/AlexeyMalafeev/readable/compare/v1.0.0...v1.1.0
 [1.0.0]: https://github.com/AlexeyMalafeev/readable/releases/tag/v1.0.0

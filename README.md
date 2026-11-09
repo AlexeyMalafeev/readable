@@ -32,7 +32,7 @@ With the skill:
 
 ## What's in this repo
 
-- [`skills/readable/SKILL.md`](skills/readable/SKILL.md): the full guide. It has 12 rules with explanations, a worked example and a pre-send check the agent runs on its draft. The folder follows the open [Agent Skills](https://agentskills.io) format, so Claude Code, Codex and other agents that support the format can load it.
+- [`skills/readable/SKILL.md`](skills/readable/SKILL.md): the complete guide, with compact rules, examples and a pre-send check the agent runs on its draft. The folder follows the open [Agent Skills](https://agentskills.io) format, so Claude Code, Codex and other agents that support the format can load it.
 - [`always-on.md`](always-on.md): a short version of the rules (about 20 lines) that you can add to your agent's global instructions file. That file is loaded in every session, so the rules apply even when the agent doesn't load the skill.
 
 ## Install
