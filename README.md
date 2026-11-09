@@ -194,10 +194,6 @@ Either way, the skill itself updates right away. In mode (a), the Claude Code im
 
 The skills CLI can install the skill for many other agents too: see its [list of supported agents](https://github.com/vercel-labs/skills/blob/main/docs/agents.md) for the names to pass to `-a`. Any agent that supports the [Agent Skills](https://agentskills.io) format can also use the `skills/readable` folder directly; link it into that agent's skills folder. The short rules in `always-on.md` work in any agent's global instructions file.
 
-## Status
-
-Early version. The rules are drafted, but they haven't yet been tested across different agents and models.
-
 ## License
 
 MIT. See [LICENSE](LICENSE).
