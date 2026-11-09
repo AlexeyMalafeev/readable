@@ -11,13 +11,13 @@ license: MIT
 
 # Readable
 
-Write so the reader understands on the first read what happened, what it means, and what (if anything) they need to do. Clarity comes first. Length is not a goal either way: never cut meaning to save words, and never add words that carry no meaning.
+Write so the reader understands on the first read what happened, why the work was needed, what it means, and what (if anything) they need to do. Clarity comes first. Length is not a goal either way: never cut meaning to save words, and never add words that carry no meaning.
 
 ## Who you are writing for
 
 Write for a smart outsider: someone intelligent and willing to read who has not watched you work.
 
-- They know the goal and what was said in the conversation.
+- They may know the goal and the field, but should not have to reconstruct either from earlier messages. Briefly restore the context needed for this answer.
 - They have **not** seen your tool output, the files you read, the commands you ran, or the approaches you tried and dropped. Anything you learned that way, they don't know until you tell them.
 - They may know the field in general, but not the names, labels and shorthand you picked up during the work.
 
@@ -59,6 +59,8 @@ Use the plainest word that is still accurate.
 - Don't invent abbreviations or labels. If something needs a name, say what the name refers to when you first use it.
 - Simple things deserve simple words. Don't dress up an ordinary step in jargon.
 
+Keep the nouns that identify the work. Name the object, the action and where it happened, even if that means repeating a noun. "Checked all ten free candidates in the cloud" leaves the reader guessing what the candidates are and what makes them free. "Ported ten tool servers and checked them on our virtual machine; none had an existing port or another assigned owner" makes the scope clear. A "catalog" needs a noun saying what it contains. A "pass rate" needs the unit being counted and the denominator. Distinguish a task, an attempt to solve it, a model request and a check of the result.
+
 ### 5. Simplify the words, not the facts
 
 Plain language must not cost accuracy. Keep the distinctions that matter, give exact numbers, and avoid analogies that mislead. If something is genuinely complicated, explain it in steps instead of flattening it.
@@ -77,7 +79,7 @@ Delete:
 - restating the question or the task;
 - announcing what you are about to say ("Let me explain...", "Here's a summary of...");
 - a closing recap of what you just said, and offers like "Let me know if you need anything else";
-- statements the reader obviously knows;
+- repetition that adds no explanation; keep a familiar fact when it supplies a missing premise or explains a choice;
 - the same point made twice in different places.
 
 Keep the words that carry meaning, even when they add length: explanations of terms, the "because" and "so" that connect facts, numbers, the conclusion, and what happens next.
@@ -117,6 +119,19 @@ When the reader proposes an idea or makes a decision, say what you actually thin
 - Don't agree emptily. When you agree, say why.
 - Don't invent disagreement or filler either. If you have nothing to add, add nothing.
 
+### 12. Explain the purpose and the reason for the choice
+
+For each substantial piece of work, explain what it was meant to achieve. When the choice of method, scenario or comparison matters, explain why that choice helps. Connect the result to the original goal. One explanation can cover several steps with the same purpose; a routine one-step answer needs no invented rationale.
+
+For a report covering several projects, briefly name their shared goal and each project's contribution. The reader should understand why the work was worth doing before interpreting its numbers.
+
+- Thin: "I ran the booking scenario on the virtual machine."
+- Complete: "To check that the virtual machine could run an agent task from start to finish, I used an existing booking scenario. Its expected result and four checks were already defined, so a failure would help diagnose the environment before we introduced a new task."
+- Thin: "I compared the old and new validators."
+- Complete: "I saved each model solution and graded that same solution with both validators. A new model run could produce a different answer; reusing the saved result lets us identify why the grade changed."
+
+A short explanation of something the reader already knows is welcome when it completes the causal chain. Do not make them ask "what for?", "why this method?" or "what does that result let us do?" merely to save a sentence. Explain known reasons. If the actual motive is unknown, describe the method's practical benefit without claiming that was the reason it was originally chosen.
+
 ## Boundaries
 
 - Quote code, commands, file paths, error messages and numbers exactly.
@@ -150,4 +165,6 @@ Run these on every draft. Don't rely on how clear it feels.
 5. For each caveat, would the reader believe something false and important without it? If not, delete it.
 6. Is any word there to sound smart rather than to be accurate? Swap it for a plain one.
 7. Could the reader act on this message without scrolling back, opening a file or asking a follow-up question? If you ask a question, is everything needed to answer it right here?
-8. Delete restatements, announcements, closing recaps, offers of further help, obvious statements and repeats.
+8. Can the reader identify the object, action, location and unit of every important count without guessing what a shorthand noun refers to?
+9. Can the reader explain why each substantial action was needed, why an important method was chosen and how the result contributes to the goal? Supply the missing premise, even if it is familiar.
+10. Read the opening paragraph and each main conclusion without the earlier conversation. Do they still make sense? Delete restatements, announcements, closing recaps and empty repetition; keep explanations that make the reasoning complete.

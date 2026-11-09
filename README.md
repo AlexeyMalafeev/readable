@@ -14,8 +14,9 @@ Coding agents often write messages that make sense to them but not to the reader
 - **Unexplained terms.** Jargon, function names, internal labels and abbreviations used as if the reader already knew them.
 - **Missing information.** The reader has to scroll back, open files or ask to understand the message.
 - **No conclusion.** A list of observations, but no "so this means...".
+- **Missing objects and reasons.** "Checked ten candidates" without saying candidates for what, or a list of actions without explaining why they help achieve the goal.
 
-It also guards against the opposite failures: padding, repetition, stating the obvious, and oversimplifying until the facts are wrong.
+It also guards against padding, repetition and oversimplifying until the facts are wrong. Familiar context stays when it helps the reader understand why the work was needed.
 
 The skill is not about saving tokens. Messages written in this style are sometimes longer, because explanations and conclusions take words. The rule is to never cut meaning to save length, and never add words that carry no meaning.
 
@@ -31,7 +32,7 @@ With the skill:
 
 ## What's in this repo
 
-- [`skills/readable/SKILL.md`](skills/readable/SKILL.md): the full guide. It has 11 rules with explanations, a worked example and a pre-send check the agent runs on its draft. The folder follows the open [Agent Skills](https://agentskills.io) format, so Claude Code, Codex and other agents that support the format can load it.
+- [`skills/readable/SKILL.md`](skills/readable/SKILL.md): the full guide. It has 12 rules with explanations, a worked example and a pre-send check the agent runs on its draft. The folder follows the open [Agent Skills](https://agentskills.io) format, so Claude Code, Codex and other agents that support the format can load it.
 - [`always-on.md`](always-on.md): a short version of the rules (about 20 lines) that you can add to your agent's global instructions file. That file is loaded in every session, so the rules apply even when the agent doesn't load the skill.
 
 ## Install
